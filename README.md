@@ -27,7 +27,7 @@ NPM  : 2106705543
 Link aplikasi Heroku : https://tugas2django.herokuapp.com/katalog/
 
 Bagan Penjelasan
-![](Bagan penjelasan.png)
+![](bagan.png)
 
 Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 
