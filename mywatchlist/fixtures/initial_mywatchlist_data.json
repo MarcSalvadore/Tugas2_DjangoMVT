@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 1,
+        "fields": {
+            "watched": "Yes",
+            "title": "Dilan 1990",
+            "rating": "3.5",
+            "release_date": "25 Januari 2018",
+            "review": "Novel remaja tersebut mempunyai alur cerita cinta yang menggemaskan dengan sosok Dilan dan Milea sebagai karakter utamanya. Bagi kalian yang sudah membaca novelnya, tentu dibuat senyum-senyum sendiri oleh tingkah laku keduanya ketika saling bertemu."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 2,
+        "fields": {
+            "watched": "Yes",
+            "title": "Titanic",
+            "rating": "4.3",
+            "release_date": "5 Januari 1998",
+            "review": "Menjadi salah satu film terlaris sepanjang masa, membuat Titanic masuk ke dalam daftar film wajib yang harus kamu tonton. Anak-anak ‘90 biasanya yang paling khatam nih sama jalan ceritanya yang nguras emosi sama air mata. Apalagi adegan-adegan kece di kapal yang bikin ikutan ngelayang even di akhir cerita harus nangis bombay."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 3,
+        "fields": {
+            "watched": "Yes",
+            "title": "Doraemon",
+            "rating": "3",
+            "release_date": "17 Desember 2019",
+            "review": "Ceritanya berpusat pada kisah Doraemon dan Nobita CS pergi berpetualang dengan berlayar ke Laut. Mereka pergi berlayar karena rasa penasaran dengan legenda ‘Pulau Harta Karun’. Namun, nasib mereka kurang beruntung, karena Shizuka diculik dan mereka harus menghadapi badai."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 4,
+        "fields": {
+            "watched": "No",
+            "title": "Perempuan Tanah Jahanam",
+            "rating": "3.3",
+            "release_date": "17 Oktober 2019",
+            "review": "Kelebihan horor psikologis ini mampu membuat penonton merasakan ketakutan yang sama dengan tokoh dalam film, dengan kata lain Joko mampu membawa penonton ikut masuk ke dalam cerita."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 5,
+        "fields": {
+            "watched": "Yes",
+            "title": "Red Notice",
+            "rating": "3.15",
+            "release_date": "4 November 2021",
+            "review": "Film ini masih layak ditonton sampai tuntas. Selain karena kehadiran tiga aktor ternama, cara Rawson Marshall Thurber menyajikan plot ceritanya adalah alasan lain dibalik itu.Tiap adegan action-nya disajikan dengan cukup menegangkan, serta sedikit unsur komedi di dalamnya. Semua adegan dilengkapi dengan lokasi syuting yang beragam, penggunaan properti yang sesuai, serta sajian musik yang klise namun tepat guna."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 6,
+        "fields": {
+            "watched": "Yes",
+            "title": "The Intern",
+            "rating": "3.6",
+            "release_date": "25 September 2015",
+            "review": "Memiliki kisah yang cukup unik mengenai seorang pria tua yang ingin mencari kegiatan sebagai sebuah anak magang pada perusahaan fashion. Ben tersebut menemui bos yang unik dan akhirnya memiliki keterikatan dengan teman sekantornya sampai ia menemukan cinta barunya."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 7,
+        "fields": {
+            "watched": "No",
+            "title": "Godzilla",
+            "rating": "3.2",
+            "release_date": "16 Mei 2014",
+            "review": "Produser berhasil membuat film yang dapat membuat penontonnya masuk ke dalam film, dimana adanya rasa tegang saat pertama kali sang monster Godzilla muncul dan mengancam manusia. Film ini cocok bagi para pecinta mitologi yunani mengenai monster karena detail ceritanya dan alur film yang baik."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 8,
+        "fields": {
+            "watched": "Yes",
+            "title": "Big Hero 6",
+            "rating": "3.9",
+            "release_date": "23 Oktober 2014",
+            "review": "Memiliki animasi yang sangat baik dan cocok untuk kalangan anak-anak serta remaja karena cerita yang dibawakan cenderung ringan dan dapat dicerna dengan baik. Cerita yang dibawakan juga tidak membosankan karena memiliki alur cerita dan plot twist yang dapat membuat penonton betah untuk menontonnya."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 9,
+        "fields": {
+            "watched": "No",
+            "title": "Top Gun Maverick",
+            "rating": "4.2",
+            "release_date": "27 Mei 2022",
+            "review": "Plot yang ditawarkan Joseph Kosinski sebagai sutradara menggantikan mendiang Tony Scott ternyata menghasilkan ironi bagi saya. Film yang sudah dinanti selama 36 tahun ini tak ubahnya seperti film motivasi penuh awang-awang dan delusi.Mulai dari pemilihan protagonis, pendukung, alur cerita, musik latar, hingga efek animasi yang ditawarkan, semua terkesan tak ada yang spesial dan cenderung tipikal film blockbuster Hollywood."
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 10,
+        "fields": {
+            "watched": "Yes",
+            "title": "Baywatch",
+            "rating": "2.7",
+            "release_date": "19 Juli 2017",
+            "review": "Film ini cukup menghibur terutama bagi mereka yang ingin mencari hiburan santai tanpa plot cerita yang berat. Selain itu, Baywatch juga menawarkan banyak suguhan lelucon yang lucu terutama bagi mereka yang sering menonton film barat. Film ini juga mengandung adegan action yang melengkapi comedy nya menjadikan film ini betah untuk ditonton. Namun, tidak dianjurkan untuk anak dibawah umur."
+        }
+    }
+]

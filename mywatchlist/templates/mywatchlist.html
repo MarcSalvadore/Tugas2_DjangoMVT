@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+  <head>
+    <style>
+      h1 {text-align: center;}
+    </style>
+  </head>
+  <body style="background: color #17c3fa;;">
+  <h1>Tugas 3 Assignment PBP/PBD</h1>
+
+  <h5>Name: Marc Salvadore Silitonga</h5>
+
+  <h5>Student ID: 2106705543</h5>
+  
+  <table style="background: color #33475a;">
+    <tr>
+      <th>Watched</th>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Review</th>
+    </tr>
+    {% comment %} Add the data below this line {% endcomment %}
+    {% for film in list_tontonan %}
+    <tr>
+        <td>{{film.watched}}</td>
+        <td>{{film.title}}</td>
+        <td>{{film.rating}}</td>
+        <td>{{film.release_date}}</td>
+        <td>{{film.review}}</td>
+    </tr>
+{% endfor %}
+  </table>
+  </body>
+ {% endblock content %}
