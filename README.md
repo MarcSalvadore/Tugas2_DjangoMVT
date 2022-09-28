@@ -26,6 +26,17 @@ Saat kita ingin mengimplementasikan sebuah platform, maka pasti terjadi traffic 
 Cara saya mengimplementasikan checklist diatas adalah dengan membuat aplikasi baru dengan menjalankan perintah python startapp (nama aplikasi). Lalu saya mengedit class urls untuk menambahkan app_name dan juga path yang nantinya akan digunakan untuk membawa user ke web. Saya juga membuat def show_mywatchlist(request) yang mengembalikan render(request, "mywatchlist.html", context), pada fungsi ini saya mengambil data-data yang nantinya akan saya buat. Pada class urls sebelumnya saya menambahkan path path('', show_mywatchlist, name='show_mywatchlist'). Masuk ke dalam pembuatan data, pertama saya membuat dahulu variabel yang akan menerima data tersebut pada class models. Masing-masing variabel tersebut saya berikan field yang sesuai dengan data yang akan masuk nantinya, contohnya adalah title = models.TextField() yaitu variabel title yang akan menerima string. Selanjutnya saya membuat fungsi untuk menyediakan berbagai format yaitu HTML, XML, dan JSON. Hal ini dilakukan dengan menambahkan def watch_xml(request), def show_xml_id(request, id), def watch_json(request), def show_json_id(request, id). Dimana masing-masing fungsi tersebut mendapatkan data melalui data = WatchList.objects.all(). Selanjutnya saya menambahkan path pada class urls agar format tersebut dapat diakses pada web. Path yang saya tambahkan adalah path('xml/', watch_xml, name='watch_xml'), path('json/', watch_json, name='watch_json'), path('json/<int:id>', show_xml_id, name='show_xml_id'), path('xml/<int:id>', show_json_id, name='show_jason_id'), dan path untuk format HTML-nya path('html/', show_mywatchlist, name='show_mywatchlist'). Selanjutnya saya membuat sebuah testing untuk memastikan kelancaran website pada test.py. Tahap terakhir adalah melakukan migration dengan menjalankan perintah makemigration, migrate, kemudian memasukkan data yang sudah saya buat ke dalam code ini yang nantinya akan ditampilkan pada web. Data tersebut saya buat pada initial_mywatchlist_data.json. 
 Setelah tahap-tahap tersebut selesai saya melakukan add, commit, dan push sehingga code siap di depoly ke Heroku.
 
+## POSTMAN
+
+http://localhost:8000/mywatchlist/html
+![](postman_html.png)
+
+http://localhost:8000/mywatchlist/xml
+![](postman_xml.png)
+
+http://localhost:8000/mywatchlist/json
+![](postman_json.png)
+
 # TUGAS 2 PBP
 Nama : Marc Salvadore Silitonga
 NPM  : 2106705543
