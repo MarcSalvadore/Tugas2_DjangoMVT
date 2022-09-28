@@ -1,13 +1,40 @@
 # TUGAS 4 PBP
+
 Nama : Marc Salvadore Silitonga
 NPM  : 2106705543
-Link aplikasi Heroku : 
+Link aplikasi Heroku : https://tugas2django.herokuapp.com/todolist
+
+## Kegunaan CSRF Token
+
+Pada dunia cyber terdapat suatu cara penyerangan yang disebut dengan cross site request forgery. Penyerangan tersebut dilakukan dengan memberikan suatu link yang akan membuat targetnya melakukan sesuatu untuk si penyerang. Penyerangan ini dapat kita hentikan menggunakan CSRF token tersebut. CSRF token akan meminta autentikasi dari orang yang memasuki web mereka, dinamakan token karena ada token yang diberikan kepada user yang mana harus dikembalikan oleh user untuk memastikan bahwa user tersebut valid atau lulus autentikasi. Jika user tidak memiliki autentikasi maka program akan menolak permintaan user untuk mengakses web tersebut.
+
+## Cara membuat form secara manual
+
+Form pengisian pada laman create task dapat dibuat dengan beberapa cara. Terdapat generator yaitu {{ form.as_table }} untuk membuat form, cara lainnya adalah membuat form secara manual dengan <input> yang diikuti dengan nama form serta tipe data yang akan dikembalikan oleh form.
+
+## Proses alur data dari submisi hingga output
+
+Setelah mengisi form dan meng-submitnya, data dari isian form tersebut akan dikirim ke server yang nantinya akan disimpan dengan method .save() (dapat dilihat pada views.py). Method tersebut bisa digunakan karena adanya ORM (object relational mapping layer) yang berfungsi untuk mengakses data dari aplikasi yang biasa menggunakan database seperti MySQL, SGLite, atau PostgreSQL. Data yang tersimpan akan diteruskan ke models, melalui request yang diberikan. Dari models, data tersebut akan di render ke HTML melalui variabel yang dipanggil pada file HTML todolist dan nantinya dapat kita lihat pada laman aplikasi.
+
+## Cara saya mengimplementasikan checklist
+
+1. Membuat app baru dengan perintah (python manage.py startapp todolist) di folder yang sudah saya jalankan virtual environtmentnya.
+2. Menambahkan routing path todolist pada project_django dan menambahkan todolist pada INSTALLED_APP pada settings.py di project_django. 
+3. Membuat variabel mengenai data yang akan diambil, yaitu user, date, title, dan description pada models.py. Tahap ini dilakukan dengan menambahkan from django.contrib.auth.models import User
+4. Membuat file HTML untuk login, register, dan todolist. Masing-masing file HTML tersebut akan berguna untuk menampilkan lamannya masing-masing.
+5. Membuat program pada views.py dan menambahkan fungsi register, login, dan logout.
+6. Menambahkan routing register, login, dan logout pada urls.py di todolist.
+7. Membuat file newtask.html yang nantinya akan menampilkan laman saat user ingin membuat task baru melalui tombol Create Task.
+8. Saya juga membuat file forms.py untuk menampilkan form pengisian saat memasuki laman create task.
+9. Membuat fungsi create_task pada views.py untuk menambahkan tugas.
+10. Membuat routing create-task pada urls.py di todolist.
+11. Melakukan push ke Repo Github dan mendeploy program ke Heroku.
 
 # TUGAS 3 PBP
 
 Nama : Marc Salvadore Silitonga
 NPM  : 2106705543
-Link aplikasi Heroku : 
+Link aplikasi Heroku : https://tugas2django.herokuapp.com/mywatchlist
 
 ## 1. Perbedaan HTML, XML, dan JSON
 
