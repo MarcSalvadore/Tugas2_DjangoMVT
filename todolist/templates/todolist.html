@@ -1,24 +1,50 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h3>Nama: {{nama}}</h3>
+{% block meta %}
+<title>TODO List</title>
+{% endblock meta %}
 
-<table border="2" bordercolor="black">
-    <tr>
-    <th>Date</th>
-    <th>Title</th>
-    <th>Description</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for task in list_kegiatan %}
-        <tr>
-            <th>{{task.date}}</th>
-            <th>{{task.title}}</th>
-            <th>{{task.description}}</th>
-        </tr>
+{% block content %}
+
+<div class="container mx-auto pt-4 flex flex-col gap-4">
+  <div class="flex flex-row items-center justify-center md:justify-end gap-4">
+    <p class="text-xl">
+      Hello, {{ user.get_username }}
+    </p>
+    <a href="{% url 'todolist:logout' %}" class="btn btn-error ">Log Out</a>
+    <a href="{% url 'todolist:create-task' %}" class="btn btn-primary">Create Task</a>
+  </div>
+
+  {% if messages %}
+  <ul class="alert alert-info flex-col text-left text-info-content">
+    {% for message in messages %}
+    <li>{{ message }}</li>
     {% endfor %}
-</table>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-<button><a href="{% url 'todolist:create-task' %}">Create Task</a></button>
+  </ul>
+  {% endif %}
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for task in list_kegiatan %}
+    <div class="scale-100 hover:scale-105 transition card bg-neutral text-neutral-content">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">{{ task.title }}</h2>
+        <span>{{ task.date }} | {{ task.is_finished | yesno:"Finished,Not Finished" }}</span>
+        <p class="break-all">{{ task.description }}<p>
+ 
+        <div class="card-actions justify-end">
+          <form action="{% url 'todolist:update-task' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary">Update</button>
+          </form>
+          <form action="{% url 'todolist:delete-task' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-error">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
 {% endblock content %}
