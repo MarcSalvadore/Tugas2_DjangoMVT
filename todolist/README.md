@@ -40,4 +40,6 @@ dapat terlihat dari keresponsifan web saat AJAX dijalankan, dimana tidak ada lag
 3. Mengubah rendering menjadi AJAX, serta melakukan GET ke JSON B yang dilanjut dengan pembuatan card dari data yang dimasukkan.
 4. Menyambungkan button create task dengan event onClick untuk menerapkan AJAX.
 5. Mengatur ulang task untuk di render kembali ketika ada perubahaan yang dilakukan.
-6. Jika tombol Delete di pencet maka laman akan langsung menghilangkan card-nya tanpa perlu reload laman.
+6. Mencoba mengerjakan bonus dengan menambahkan delete dengan id atau AJAX DELETE ke dalam program.
+7. Membuat path khusus untuk delete berdasarkan id yang didapat dengan parameter id integer.
+8. Menyambungkan button Delete pada card task untuk melakukan AJAX DELETE yang memungkinkan laman utama langsung ter-update.
