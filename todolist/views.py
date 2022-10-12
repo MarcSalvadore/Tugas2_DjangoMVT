@@ -1,25 +1,25 @@
-import datetime
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import HttpResponse, render, redirect
+from django.http import HttpRequest, HttpResponseRedirect
+from django.contrib import messages
+from django.core import serializers
 from django.urls import reverse
 from django import forms
 
-from django.contrib.auth.forms import UserCreationForm
+from datetime import date
+import datetime
+
 from todolist.models import toDo
-from django.contrib import messages
 from todolist.forms import NewList
-from django.http import HttpRequest
-from django.http import HttpResponseRedirect
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 def show_list(request: HttpRequest):
     # data_kegiatan = ToDo.objects.filter(user=request.user).all()
     user = request.user
-    data_kegiatan = toDo.objects.all()
+    data_kegiatan = toDo.objects.filter(user=request.user)
     context = {
     'list_kegiatan': data_kegiatan,
     'nama': user.username,
@@ -34,7 +34,7 @@ def register(request: HttpRequest):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Account created!")
+            messages.success(request, "Create Account Success!")
             return redirect("todolist:login")
     context = {'form':form}
     return render(request, 'register.html', context)
@@ -54,12 +54,14 @@ def login_user(request: HttpRequest):
     context = {}
     return render(request, 'login.html', context)
 
+@login_required(login_url='/todolist/login/')
 def logout_user(request: HttpRequest):
     logout(request)
     response = HttpResponseRedirect(reverse('todolist:login'))
     response.delete_cookie('last_login')
     return response
 
+@login_required(login_url='/todolist/login/')
 def create_task(request: HttpRequest):
     if request.method == "POST":
         form = NewList(request.POST)
@@ -78,6 +80,7 @@ def create_task(request: HttpRequest):
     context = {"form": form}
     return render(request, "newtask.html", context)
 
+@login_required(login_url='/todolist/login/')
 def delete_task(request: HttpRequest, post_id:int):
     if request.method == "POST":
         task = toDo.objects.filter(id=post_id, user=request.user).first()
@@ -88,6 +91,7 @@ def delete_task(request: HttpRequest, post_id:int):
             messages.error(request, "Task not found!")
     return redirect("todolist:show_list")
 
+@login_required(login_url='/todolist/login/')
 def update_task(request: HttpRequest, post_id:int):
     if request.method == "POST":
         task = toDo.objects.filter(id=post_id, user=request.user).first()
@@ -98,4 +102,36 @@ def update_task(request: HttpRequest, post_id:int):
         else:
             messages.error(request, "Task not found!")
     return redirect("todolist:show_list")
+
+@login_required(login_url='/todolist/login/')
+def show_list_json(request: HttpRequest):
+    task = toDo.objects.filter(user=request.user).order_by("date").all()
+    return HttpResponse(serializers.serialize("json", task), content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+def add_task_json(request: HttpRequest):
+    if request.method == "POST":
+        task = toDo(
+            user = request.user,
+            date = date.fromisoformat(request.POST["date"]),
+            title = request.POST["title"],
+            description = request.POST["description"],
+        )
+        task.save
+        return HttpResponse(
+            serializers.serialize("json", [task]),
+            content_type = "application/json",
+            )
+    return HttpResponse("Invalid method", status_code=405)
+
+@login_required(login_url='/todolist/login/')
+def delete_task_json(request: HttpRequest, post_id: int):
+    if request.method == "DELETE":
+        task = toDo.objects.filter(id=post_id, user=request.user).first()
+        if task:
+            task.delete()
+            return HttpResponse("OK")
+        else:
+            return HttpResponse("Not Found", status_code=404)
+    return HttpResponse("Invalid method", status_code=405)
     

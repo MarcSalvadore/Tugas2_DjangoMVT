@@ -23,14 +23,13 @@
   </ul>
   {% endif %}
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {% for task in list_kegiatan %}
+  {% for task in list_kegiatan %}
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2">
     <div class="scale-100 hover:scale-105 transition card bg-neutral text-neutral-content">
       <div class="card-body items-center text-center">
         <h2 class="card-title">{{ task.title }}</h2>
         <span>{{ task.date }} | {{ task.is_finished | yesno:"Finished,Not Finished" }}</span>
         <p class="break-all">{{ task.description }}<p>
- 
         <div class="card-actions justify-end">
           <form action="{% url 'todolist:update-task' task.id %}" method="POST">
             {% csrf_token %}
@@ -43,8 +42,85 @@
         </div>
       </div>
     </div>
-    {% endfor %}
+    {% endfor content %}
   </div>
-
 </div>
-{% endblock content %}
+
+<script>
+  let container;
+  function createCardHtml(task, id) {
+    const { title, date, description} = task
+    const isFinishedText = task.is_finished ? "Finished" : "Not Finished"
+    return `
+      <div class="scale-100 hover:scale-105 transition card bg-neutral text-neutral-content">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title">${title}</h2>
+          <span>${date} | ${isFinishedText}</span>
+          <p class="break-all">${description}</p>
+          <div class="card-actions justify-end">
+            <form action="/todolist/update/${id}" method="POST">
+              {% csrf_token %}
+              <button class="btn btn-primary">Toggle</button>
+            </form>
+            <form action="/todolist/delete/${id}" method="POST">
+              {% csrf_token %}
+              <button class="btn btn-error removebtn" data-id="${id}">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  function removeTodo(e) {
+    const id = $(e.target).data("id")
+    e.preventDefault()
+    $.ajax({
+      type: 'DELETE',
+      url: '/todolist/delete/json/' + id,
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+      },
+      success: () => {
+        alert("Done!")
+        fetchData()
+      }
+    })
+  }
+
+  function renderTodo(task) {
+    todos.map((task) => {
+      const newNode = $(createCardHtml(task.fields, task.pk))
+      newNode.find(".removebtn").click(removeTodo)
+      container.append(newNode)
+    })
+  }
+
+  function fetchData() {
+    container.empty()
+    $.get("{% url 'todolist:show_list_json' %}", renderTodo)
+  }
+
+  function createTodo(e) {
+    e.preventDefault()
+     $.ajax({
+      type: 'POST',
+      url: '/todolist/create/json',
+      data: $("#newForm").serialize(), 
+      success: () => {
+        alert("Done!")
+        $("#my-modal").click()
+        fetchData()
+      },
+      dataType: 'json'
+    });
+  }
+
+  $(document).ready(() => {
+    $("#newBtn").click(createTodo)
+    container = $("#todosContainer")
+    fetchData()
+  })
+</script>
+
+{% endblock %}
